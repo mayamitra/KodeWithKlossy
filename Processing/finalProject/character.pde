@@ -49,12 +49,6 @@ class Character {
     }
   }
   
-  void shirtChange(){
-    colorR = 255;
-    colorG = 0;
-    colorB = 0;
-  }
-
   void display(color shirt) {  
     colorR = 0;
     colorG = 0;

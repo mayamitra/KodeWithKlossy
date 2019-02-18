@@ -1,11 +1,15 @@
-// Two aliens throw fireballs at each other. 
-//Lives start at 10 and go down each time a player is hit.
+// DESCRIPTION: Two aliens throw fireballs at each other. Their Lives start at 10 and go down each time a player is hit.
+//HOW TO PLAY:
+  // Player one goes up and down using W/S keys, shoots using D key
+  //Player two goes up and down using UP/DOWN arrows, shoots using, LEFT arrow
 
 import ddf.minim.*;
 Minim minim;
 AudioPlayer player;
 
 import processing.sound.*;
+SoundFile file;
+
 PFont font;
 
 ArrayList <Ball1> balls1; 
@@ -13,10 +17,6 @@ ArrayList <Ball2> balls2;
 
 int lives1;
 int lives2;
-
-import processing.sound.*;
-
-SoundFile file;
 
 Character player1;
 Character player2;
@@ -73,18 +73,14 @@ void draw() {
     player1.position.y = height;
   }
 
-  //make the color of the p2's shirt change if p2 gets hit
-  if (hit1 == true) {
-    //player2.display(color(255, 0, 0));
-    player2.shirtChange();
-  }
-
+  //Ball 2 methods
   for (int i=0; i<balls1.size(); i++) {
     Ball1 b1 = balls1.get(i);
     b1.display();
     b1.move();
     b1.accelerateSlow();
-
+    
+    //ball bounces off edges of screen
     if (b1.position.y >= height-(b1.size/2) || b1.position.y < b1.size/2) {
       b1.bounceY();
       b1.accelerate();
@@ -114,6 +110,8 @@ void draw() {
   //If Character 1's lives1 = 0, print "Game Over"
   if (lives1 <= 0) {
     String player1Loss = ("Game over! Player 2 Wins");
+    fill(0);
+    rect(width/2, height/2, width, height);
     textFont(font);
     fill(255);
     textSize(50);
@@ -133,19 +131,14 @@ void draw() {
     player2.position.y = height;
   }
   
-  //make the color of the p1's shirt change if p1 gets hit
-  if (hit2 == true) {
-    //player1.display(color(255, 0, 0));
-    player1.shirtChange();
-  }
-
+  //Ball 2 methods
   for (int i=0; i<balls2.size(); i++) {
     Ball2 b2 = balls2.get(i);
     b2.display();
     b2.move();
     b2.accelerateSlow();
 
-
+    //ball bounces off edges of screen
     if (b2.position.y >= height-(b2.size/2) || b2.position.y < b2.size/2) {
       b2.bounceY();
       b2.accelerate();
@@ -174,6 +167,8 @@ void draw() {
   //If Character 2's lives2 = 0, print "Game Over"
   if (lives2 <= 0) {
     String player2Loss = ("Game over! Player 1 Wins");
+    fill(0);
+    rect(width/2, height/2, width, height);
     textFont(font);
     fill(255);
     textSize(50);
